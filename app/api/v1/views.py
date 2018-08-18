@@ -70,5 +70,5 @@ def post_answer(question_id):
 
 @module.errorhandler(404)
 def not_found(error):
-    """This errorhandler method return a user friendly message if resource is not found"""
+    """This errorhandler method return a user friendly message if resource is not found."""
     return make_response(jsonify({'error': 'Not found'}), 404)
