@@ -38,6 +38,7 @@ class TestAnswers(unittest.TestCase):
         self.assertEquals(response.status_code, 201)
 
     def test_return_error_msg_if_body_of_answer_is_empty(self):
+        """This method tests if the body of posted answer is empty, if so it returns an error message"""
         response = self.app.post('/api/v1/questions', content_type = 'application/json', data = json.dumps({
             'id':3,
             'title': 'What is an andela developer supposed to know?',
@@ -47,6 +48,7 @@ class TestAnswers(unittest.TestCase):
         self.assertTrue("Failed" in response.get_data(as_text=True))
     
     def test_return_not_found_if_attempt_to_answer_question_that_doesnot_exist(self):
+        """This method return error if user attempts to access a question that does not exist"""
         response = self.app.post('/api/v1/questions/1/answers', content_type='application/json',data = json.dumps({
             'question_id': 4,
             'body': 'this is the answer to the question right now on your mind...'

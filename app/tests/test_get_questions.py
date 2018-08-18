@@ -46,6 +46,3 @@ class TestGetQuestions(unittest.TestCase):
             'title': 'testing',
             'body': 'answer test'
         })
-
-
-
