@@ -55,7 +55,7 @@ def post_question():
 
 @module.route('/api/v1/questions/<int:question_id>/answers', methods = ['POST'])
 def post_answer(question_id):
-
+    """Endpoint to post an answer for a specific question"""
     if not request.json or not 'question_id' in request.json or not 'body' in request.json:
         abort(400)
     
@@ -70,4 +70,5 @@ def post_answer(question_id):
 
 @module.errorhandler(404)
 def not_found(error):
+    """This errorhandler method return a user friendly message if resource is not found"""
     return make_response(jsonify({'error': 'Not found'}), 404)
