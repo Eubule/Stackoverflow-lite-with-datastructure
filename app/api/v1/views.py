@@ -14,7 +14,7 @@ def get_questions():
     Route to fetch all the questions.
 
     """
-    return jsonify({"questions":quest.get_questions()})
+    return jsonify({"questions": quest.get_questions()})
 
 #endpoint for fetching a specific question
 @module.route('/api/v1/questions/<int:question_id>', methods =['GET'])
@@ -67,6 +67,11 @@ def post_answer(question_id):
 
     answer = [answer for answer in answers if answer['question_id'] == request.json['question_id']]
     return jsonify({'Answer': answer[0]}), 201
+
+@module.route('/api/v1/questions/<int:question_id>/answers', methods = ['GET'])
+def get_answer(question_id):
+    """endpoint to fetch all answers to a question"""
+    return jsonify({"Answers": ans.get_answer(question_id)}), 200
 
 @module.errorhandler(404)
 def not_found(error):

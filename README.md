@@ -1,4 +1,4 @@
 [![Build Status](https://travis-ci.com/Eubule/Stackoverflow-lite-with-datastructure.svg?branch=master)](https://travis-ci.com/Eubule/Stackoverflow-lite-with-datastructure)
-[![Coverage Status](https://coveralls.io/repos/github/Eubule/Stackoverflow-lite-with-datastructure/badge.svg?branch=master)](https://coveralls.io/github/Eubule/Stackoverflow-lite-with-datastructure?branch=master)
-
+[![Coverage Status](https://coveralls.io/repos/github/Eubule/Stackoverflow-lite-with-datastructure/badge.svg?branch=ch-test-resources-endpoint-159869003)](https://coveralls.io/github/Eubule/Stackoverflow-lite-with-datastructure?branch=ch-test-resources-endpoint-159869003)
+[![Maintainability](https://api.codeclimate.com/v1/badges/602cd3fa79e194352588/maintainability)](https://codeclimate.com/github/Eubule/Stackoverflow-lite-with-datastructure/maintainability)
 # Stackoverflow-lite-with-datastructure
