@@ -21,9 +21,9 @@ Stackoverflow-lite is a platform where people can ask questions and provide answ
  ------- | ----- | -------------
  GET | /api/v1/questions | Fetches all questions
  POST | /api/v1/questions | Posts a question
- GET | /api/v1/question/<questionId> | Fetches a specific question
- POST | /api/v1/questions/<questionId>/answers | Post an answer to a question
- GET | /api/v1/questions/<questionId>/answers | Fetches all answers
+ GET | /api/v1/question/< questionId> | Fetches a specific question
+ POST | /api/v1/questions/< questionId>/answers | Post an answer to a question
+ GET | /api/v1/questions/< questionId>/answers | Fetches all answers
 
 ## BUIT WITH
 
