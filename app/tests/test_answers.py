@@ -54,3 +54,34 @@ class TestAnswers(unittest.TestCase):
             'body': 'this is the answer to the question right now on your mind...'
         }))
         self.assertEquals(response.status_code, 404)
+
+    def test_if_get_answer_retrieved_all_questions_successfuly(self):
+        """This method checks if the user successfully retrieved all the answers to the questions."""
+        response = self.app.post('/api/v1/questions', content_type = 'application/json', data = json.dumps({
+            'id':9,
+            'title': 'Andela challenge 3',
+            'body': 'What is challenge gonna be like?'
+        }))
+        response_ans = self.app.post('/api/v1/questions/8/answers', content_type = 'application/json', data = json.dumps({
+            'question_id':9,
+            'body': 'Oops...I do not remember the name of the founder of andela'
+        }))
+        self.assertEquals(response_ans.status_code, 201)
+        response_get_ans = self.app.get('/api/v1/questions/9/answers')
+
+        self.assertEquals(response_get_ans.status_code, 200)                                                                                                                       
+    def test_if_error_is_thrown_attempting_to_answer_unexisting_question(self):
+        """This method checks if user tries to answer an unexisting question"""
+        response = self.app.post('/api/v1/questions', content_type = 'application/json', data = json.dumps({
+            'id':10,
+            'title': 'Andela challenge 4',
+            'body': 'What is challenge gonna be like?'
+        }))
+        response = self.app.post('/api/v1/questions/11/answers', content_type = 'application/json', data = json.dumps({
+            'question_id': 12,
+            'body': 'Question for unexisting question.'
+        }))
+        response = self.app.get('/api/v1/questions/12/answers')
+        self.assertEquals(response.status_code, 404)                        
+        
+        
