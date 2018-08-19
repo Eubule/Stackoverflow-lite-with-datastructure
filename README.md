@@ -37,10 +37,11 @@ Stackoverflow-lite is a platform where people can ask questions and provide answ
 
     ` git clone https://github.com/Eubule/Stackoverflow-lite-with-datastructure.git `
 
- 2. Create a virtual environment to run application specific packages
+ 2. Create a virtual environment to run application specific dependencies
 
     ` $ virtualenv venv `
     ` $ source venv/bin/activate `
+    ` $ pip install flask `
 
  ### RUN THE APP
 
