@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, abort
 
 
 questions = []
@@ -20,18 +20,20 @@ class Questions():
     def get_questions(self):
         """
         This method returns the list of all questions in the database.
+
         """
         
         if self.quest_id == 0 and self.title.strip() == "" and self.body.strip() == "":
-            return {
+            return jsonify({
                 "Message": "It's lonely here. There are no question asked!"
-            }
+            })
         return questions
 
     def post_question(self, id:int, title:str,body:str):
         """
         This method is meant to post a question with a question id, title and body.
         It returns a failed message if an of the fields is empty or if user attempts to enter an already asked question.
+
         """
 
         if id <= 0 or title.strip() == '' or body.strip() == '':
@@ -96,45 +98,38 @@ class Answers():
         }
         answers.append(answer)
 
-        def get_answers(self, question_id):
-            """
-            This method fetchs all the answers posted for a specific question
+    def get_answer(self, question_id):
+        """
+        This method fetches all the answers posted for a specific question
 
-            """
-            question = [question for question in questions if question['id'] == question_id]
-            if len(question) == 0:
-                return jsonify({
-                "status": "Failed",
-                "Message": "Question does not exist."
-            }),404
-            if len(answers) == 0:
-                return jsonify({
-                    "Message": "Oops!!! There are no answers to this question"
-                }), 404
+        """
+        question = [question for question in questions if question['id'] == question_id]
+        if len(question) != 0:
             return answers
+        abort(404)
 
-        def populate_qa(self):
-            """
-            This method populates the all_questions_answers which is a list of all questions ad answers.
+    # def populate_qa(self):
+    #     """
+    #     This method populates the all_questions_answers which is a list of all questions ad answers.
 
-            """
-            if len(answers) != 0:
-                all_questions_answers.append(answers)
-            if len(answers) == 0:
-                question = [question for question in questions if question['id'] != answer['question_id']]
-                if len(question) != 0:
-                    all_questions_answers.append(question)
+    #     """
+    #     if len(answers) != 0:
+    #         all_questions_answers.append(answers)
+    #     if len(answers) == 0:
+    #         question = [question for question in questions if question['id'] != answer['question_id']]
+    #         if len(question) != 0:
+    #             all_questions_answers.append(question)
     
 
-        def get_all_questions_answers(self):
-            """
-            This method retrieves all the questions and all their answers.
+    # def get_all_questions_answers(self):
+    #     """
+    #     This method retrieves all the questions and all their answers.
 
-            """
-            if len(questions) == 0 and len(answers) == 0:
-                return jsonify({
-                    "Message": "It's lonely here. There are no question asked!"
-                })
-            return all_questions_answers
+    #     """
+    #     if len(questions) == 0 and len(answers) == 0:
+    #         return jsonify({
+    #             "Message": "It's lonely here. There are no question asked!"
+    #         })
+    #     return all_questions_answers
 
         
