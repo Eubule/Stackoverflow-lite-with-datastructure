@@ -7,6 +7,10 @@ module = Blueprint('v1', __name__)
 quest = Questions()
 ans = Answers()
 
+@module.route('/')
+def index():
+    return "<h1>Hello world</h1>"
+
 #endpoint for to fetch all questions
 @module.route('/api/v1/questions', methods = ['GET'])
 def get_questions():
