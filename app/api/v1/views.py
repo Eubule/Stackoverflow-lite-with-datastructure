@@ -18,7 +18,7 @@ def get_questions():
     Route to fetch all the questions.
 
     """
-    return jsonify({"questions": quest.get_questions()})
+    return jsonify({"questions": quest.get_questions()}),200
 
 #endpoint for fetching a specific question
 @module.route('/api/v1/questions/<int:question_id>', methods =['GET'])
@@ -80,4 +80,4 @@ def get_answer(question_id):
 @module.errorhandler(404)
 def not_found(error):
     """This errorhandler method return a user friendly message if resource is not found."""
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return make_response(jsonify({'error': 'Page Not found'}), 404)
