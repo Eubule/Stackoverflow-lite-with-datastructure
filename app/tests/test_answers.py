@@ -1,4 +1,4 @@
-from run import app
+from app import app
 import unittest
 from flask import json
 from app.api.v1 import views
