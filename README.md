@@ -13,7 +13,7 @@ Stackoverflow-lite is a platform where people can ask questions and provide answ
 
 ## Link to Stackoverflow-lite using data stuctures
 
-[Stackoverflow-lite-using-data-structure]()
+[Stackoverflow-lite-using-data-structure](https://fierce-journey-23996.herokuapp.com/api/v1/questions)
 
 ## Routes captured by Stackoverflow-lite
 
