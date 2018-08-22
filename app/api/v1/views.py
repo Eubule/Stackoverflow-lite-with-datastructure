@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, abort, request, make_response
-from ..models import Questions, questions, Answers, answers, all_questions_answers
+from .models import Questions, questions, Answers, answers, all_questions_answers
 
 
 module = Blueprint('v1', __name__)
