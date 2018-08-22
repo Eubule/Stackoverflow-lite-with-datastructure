@@ -35,13 +35,13 @@ Stackoverflow-lite is a platform where people can ask questions and provide answ
  
  1. Clone this repository to your local PC
 
-    ` git clone https://github.com/Eubule/Stackoverflow-lite-with-datastructure.git `
+    ` git clone https://github.com/Eubule/Stackoverflow-lite-with-datastructure.git ` [here](https://github.com/Eubule/Stackoverflow-lite-with-datastructure)
 
  2. Create a virtual environment to run application specific dependencies
 
-    ` $ virtualenv venv `
-    ` $ source venv/bin/activate `
-    ` $ pip install flask `
+    ``` $ virtualenv venv 
+    $ source venv/bin/activate 
+     $ pip install flask ```
 
  ### RUN THE APP
 
