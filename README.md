@@ -39,9 +39,9 @@ Stackoverflow-lite is a platform where people can ask questions and provide answ
 
  2. Create a virtual environment to run application specific dependencies
 
-    `$ virtualenv venv`
-    `$ source venv/bin/activate`
-    `$ pip install flask`
+    ```$ virtualenv venv```
+    ```$ source venv/bin/activate```
+    ```$ pip install flask```
 
  ### RUN THE APP
 
