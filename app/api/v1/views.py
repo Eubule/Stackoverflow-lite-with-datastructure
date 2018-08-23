@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, abort, request, make_response
-from ..models import Questions, questions, Answers, answers, all_questions_answers
+from .models import Questions, questions, Answers, answers, all_questions_answers
 
 
 module = Blueprint('v1', __name__)
@@ -14,7 +14,9 @@ def get_questions():
     Route to fetch all the questions.
 
     """
-    return jsonify({"questions": quest.get_questions()})
+    if questions == []:
+        return jsonify({"Message": "No questions yet"})
+    return jsonify({"questions": quest.get_questions()}),200
 
 #endpoint for fetching a specific question
 @module.route('/api/v1/questions/<int:question_id>', methods =['GET'])
@@ -42,7 +44,7 @@ def post_question():
     """
 
     if not request.json or not 'id' in request.json or not 'title' in request.json or not 'body' in request.json:
-        abort(400)
+        return jsonify({"Message": "Title and body of the quetion required"}), 400
     
     question = quest.post_question(request.json['id'], request.json['title'], request.json['body'])
 
@@ -76,4 +78,4 @@ def get_answer(question_id):
 @module.errorhandler(404)
 def not_found(error):
     """This errorhandler method return a user friendly message if resource is not found."""
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    return make_response(jsonify({'error': 'The resource you are looking for does not exist in the database'}), 404)

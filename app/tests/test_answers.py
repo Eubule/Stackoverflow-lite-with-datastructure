@@ -1,4 +1,4 @@
-from run import app
+from app import app
 import unittest
 from flask import json
 from app.api.v1 import views
@@ -45,7 +45,7 @@ class TestAnswers(unittest.TestCase):
             'body': ''
         }))
         self.assertEquals(response.status_code, 400)
-        self.assertTrue("Failed" in response.get_data(as_text=True))
+        self.assertTrue("question's title and body can't be empty" in response.get_data(as_text=True))
     
     def test_return_not_found_if_attempt_to_answer_question_that_doesnot_exist(self):
         """This method return error if user attempts to access a question that does not exist"""

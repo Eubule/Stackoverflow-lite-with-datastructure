@@ -1,4 +1,4 @@
-from flask import jsonify, abort
+from flask import jsonify, abort, make_response
 
 
 questions = []
@@ -22,11 +22,9 @@ class Questions():
         This method returns the list of all questions in the database.
 
         """
-        
+                
         if self.quest_id == 0 and self.title.strip() == "" and self.body.strip() == "":
-            return jsonify({
-                "Message": "It's lonely here. There are no question asked!"
-            })
+            abort(404)
         return questions
 
     def post_question(self, id:int, title:str,body:str):
@@ -38,16 +36,14 @@ class Questions():
 
         if id <= 0 or title.strip() == '' or body.strip() == '':
             return jsonify({
-                "Status": "Failed",
-                "Message": "Argument can't be empty"
+                "Message": "question's title and body can't be empty"
             }),400
         question = [question for question in questions if question['id'] == id or question['title'] == title.strip()]
         
         # Returns a failed message if user attempts to post an already asked questions.
         if len(question) != 0:
             return jsonify({
-                "status": "Failed",
-                "Message": "Question id or title already exists"
+                "Message": "Question's id or title already exists"
             })
         self.quest_id = id
         self.title = title.strip()
@@ -77,13 +73,11 @@ class Answers():
         question = [question for question in questions if question['id'] == question_id]
         if len(question) == 0:
             return jsonify({
-                "status": "Failed",
-                "Message": "Question does not exist."
+                "Message": "You can't answer a question that does not exist"
             }), 404
         if body.strip() == '':
             return jsonify({
-                "status": "Failed",
-                "Message": "Answer's body can't be empty."
+                "Message": "Your answer's body is empty please enter a valid answer."
             }),400
 
         #Automaticaly generate answer id by adding 1 to the length of the dictionary.
@@ -107,29 +101,4 @@ class Answers():
         if len(question) != 0:
             return answers
         abort(404)
-
-    # def populate_qa(self):
-    #     """
-    #     This method populates the all_questions_answers which is a list of all questions ad answers.
-
-    #     """
-    #     if len(answers) != 0:
-    #         all_questions_answers.append(answers)
-    #     if len(answers) == 0:
-    #         question = [question for question in questions if question['id'] != answer['question_id']]
-    #         if len(question) != 0:
-    #             all_questions_answers.append(question)
-    
-
-    # def get_all_questions_answers(self):
-    #     """
-    #     This method retrieves all the questions and all their answers.
-
-    #     """
-    #     if len(questions) == 0 and len(answers) == 0:
-    #         return jsonify({
-    #             "Message": "It's lonely here. There are no question asked!"
-    #         })
-    #     return all_questions_answers
-
         
