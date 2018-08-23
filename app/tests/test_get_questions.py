@@ -28,7 +28,7 @@ class TestGetQuestions(unittest.TestCase):
         """This method returns a 404 Not found error message if a specific question is not found"""
         response = self.app.get('/api/v1/questions/7')
         self.assertEquals(response.status_code, 404)
-        self.assertTrue('The resource you are looking for does not exist in the database' in response.get_data(as_text = True))
+        self.assertTrue('There is no question that matches the id you specified' in response.get_data(as_text = True))
 
     def test_pass_if_question_is_found_in_the_database(self):
         """This method returns a 200 status code if question id is found in the database"""

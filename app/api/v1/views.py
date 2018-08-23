@@ -29,7 +29,7 @@ def get_specific_question(question_id):
     # Return a 404 Not Found error message if question not found in the dictionary
     question = [question for question in questions if question['id'] == question_id]
     if len(question) == 0:
-        abort(404)
+        return jsonify({"Message": "There is no question that matches the id you specified"}), 404
 
     return jsonify({'question': question[0]})
 
@@ -43,8 +43,11 @@ def post_question():
     
     """
 
-    if not request.json or not 'id' in request.json or not 'title' in request.json or not 'body' in request.json:
-        return jsonify({"Message": "Title and body of the quetion required"}), 400
+    if not request.json:
+        return jsonify({"Message": "Please make sure tour input is in dictionary format"}),400
+    if not 'id' in request.json or not 'title' in request.json or not 'body' in request.json:
+        return jsonify({"Message": "Please specify question id and body of the answer bofore you post"}), 400
+    
     
     question = quest.post_question(request.json['id'], request.json['title'], request.json['body'])
 
@@ -58,8 +61,10 @@ def post_question():
 @module.route('/api/v1/questions/<int:question_id>/answers', methods = ['POST'])
 def post_answer(question_id):
     """Endpoint to post an answer for a specific question"""
-    if not request.json or not 'question_id' in request.json or not 'body' in request.json:
-        abort(400)
+    if not request.json:
+        return jsonify({"Message": "Please make sure tour input is in dictionary format"}),400
+    if not 'question_id' in request.json or not 'body' in request.json:
+        return jsonify({"Message": "Please specify question id and body of the answer bofore you post"}), 400
     
     answer = ans.post_answer(request.json['question_id'], request.json['body'])
 
@@ -73,6 +78,8 @@ def post_answer(question_id):
 @module.route('/api/v1/questions/<int:question_id>/answers', methods = ['GET'])
 def get_answer(question_id):
     """endpoint to fetch all answers to a question"""
+    if ans.get_answer(question_id) == False:
+        return jsonify({"Message": "The question you are trying to access does not exist"})
     return jsonify({"Answers": ans.get_answer(question_id)}), 200
 
 @module.errorhandler(404)

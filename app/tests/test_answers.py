@@ -79,9 +79,9 @@ class TestAnswers(unittest.TestCase):
         }))
         response = self.app.post('/api/v1/questions/11/answers', content_type = 'application/json', data = json.dumps({
             'question_id': 12,
-            'body': 'Question for unexisting question.'
+            'body': 'Answer for unexisting question.'
         }))
         response = self.app.get('/api/v1/questions/12/answers')
-        self.assertEquals(response.status_code, 404)                        
+        self.assertTrue("The question you are trying to access does not exist" in response.get_data(as_text = True))                       
         
         

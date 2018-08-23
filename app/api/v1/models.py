@@ -99,6 +99,6 @@ class Answers():
         """
         question = [question for question in questions if question['id'] == question_id]
         if len(question) != 0:
-            return answers
-        abort(404)
+            return answers 
+        return False
         
