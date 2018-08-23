@@ -14,6 +14,8 @@ def get_questions():
     Route to fetch all the questions.
 
     """
+    if questions == []:
+        return jsonify({"Message": "No questions yet"})
     return jsonify({"questions": quest.get_questions()}),200
 
 #endpoint for fetching a specific question
@@ -42,7 +44,7 @@ def post_question():
     """
 
     if not request.json or not 'id' in request.json or not 'title' in request.json or not 'body' in request.json:
-        abort(400)
+        return jsonify({"Message": "Title and body of the quetion required"}), 400
     
     question = quest.post_question(request.json['id'], request.json['title'], request.json['body'])
 

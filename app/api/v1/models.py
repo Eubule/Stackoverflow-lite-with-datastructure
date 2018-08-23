@@ -22,7 +22,7 @@ class Questions():
         This method returns the list of all questions in the database.
 
         """
-        
+                
         if self.quest_id == 0 and self.title.strip() == "" and self.body.strip() == "":
             abort(404)
         return questions
