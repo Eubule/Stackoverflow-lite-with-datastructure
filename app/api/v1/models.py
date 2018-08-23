@@ -73,7 +73,7 @@ class Answers():
         question = [question for question in questions if question['id'] == question_id]
         if len(question) == 0:
             return jsonify({
-                "Message": "You can't answer a question that does not exist."
+                "Message": "You can't answer a question that does not exist"
             }), 404
         if body.strip() == '':
             return jsonify({
