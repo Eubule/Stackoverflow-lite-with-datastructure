@@ -36,16 +36,14 @@ class Questions():
 
         if id <= 0 or title.strip() == '' or body.strip() == '':
             return jsonify({
-                "Status": "Failed",
-                "Message": "Argument can't be empty"
+                "Message": "question's title and body can't be empty"
             }),400
         question = [question for question in questions if question['id'] == id or question['title'] == title.strip()]
         
         # Returns a failed message if user attempts to post an already asked questions.
         if len(question) != 0:
             return jsonify({
-                "status": "Failed",
-                "Message": "Question id or title already exists"
+                "Message": "Question's id or title already exists"
             })
         self.quest_id = id
         self.title = title.strip()
@@ -75,13 +73,11 @@ class Answers():
         question = [question for question in questions if question['id'] == question_id]
         if len(question) == 0:
             return jsonify({
-                "status": "Failed",
-                "Message": "Question does not exist."
+                "Message": "You can't answer a question that does not exist"
             }), 404
         if body.strip() == '':
             return jsonify({
-                "status": "Failed",
-                "Message": "Answer's body can't be empty."
+                "Message": "Your answer's body is empty please enter a valid answer."
             }),400
 
         #Automaticaly generate answer id by adding 1 to the length of the dictionary.

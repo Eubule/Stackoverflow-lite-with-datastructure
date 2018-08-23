@@ -76,4 +76,4 @@ def get_answer(question_id):
 @module.errorhandler(404)
 def not_found(error):
     """This errorhandler method return a user friendly message if resource is not found."""
-    return make_response(jsonify({'error': 'Page Not found'}), 404)
+    return make_response(jsonify({'error': 'The resource you are looking for does not exist in the database'}), 404)
