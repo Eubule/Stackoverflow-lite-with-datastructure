@@ -24,7 +24,7 @@ class Questions():
         """
                 
         if self.quest_id == 0 and self.title.strip() == "" and self.body.strip() == "":
-            abort(404)
+            return False
         return questions
 
     def post_question(self, id:int, title:str,body:str):
